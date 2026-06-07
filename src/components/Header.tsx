@@ -50,7 +50,6 @@ export default function Header() {
         {/* Logo */}
         <Link href={`/${locale}`} className="flex-shrink-0 flex flex-col leading-none">
           <span className="text-2xl font-bold text-amber-600 tracking-tight">M<em>e</em>bio</span>
-          <span className="text-xs text-gray-400">mebio.kz</span>
         </Link>
 
         {/* Search */}
