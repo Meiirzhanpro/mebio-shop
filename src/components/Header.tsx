@@ -34,7 +34,7 @@ export default function Header() {
           <div className="flex items-center gap-2">
             <Phone size={14} />
             <span>+7 (707) 479-47-53</span>
-            <span className="text-gray-400 ml-4">Ежедневно 9:00 – 23:00</span>
+            <span className="text-gray-400 ml-4">Ежедневно 9:00 – 18:00</span>
           </div>
           <Link
             href={switchLocalePath}

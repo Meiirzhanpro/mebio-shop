@@ -148,7 +148,7 @@ export default async function HomePage({
             {
               icon: <Truck className="text-amber-500" size={30} />,
               title: isKz ? 'Қазақстан бойынша жеткізу' : 'Доставка по Казахстану',
-              desc: isKz ? 'Күн сайын 9:00 – 23:00' : 'Ежедневно 9:00 – 23:00',
+              desc: isKz ? 'Күн сайын 9:00 – 18:00' : 'Ежедневно 9:00 – 18:00',
             },
             {
               icon: <Wrench className="text-amber-500" size={30} />,
@@ -301,7 +301,7 @@ export default async function HomePage({
             +7 (707) 479-47-53
           </a>
           <p className="text-gray-500 text-sm mt-4">
-            {isKz ? 'Күн сайын 9:00 – 23:00' : 'Ежедневно с 9:00 до 23:00'}
+            {isKz ? 'Күн сайын 9:00 – 18:00' : 'Ежедневно с 9:00 до 18:00'}
           </p>
         </div>
       </section>
