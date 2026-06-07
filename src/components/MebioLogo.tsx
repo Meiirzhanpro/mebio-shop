@@ -6,42 +6,48 @@ interface Props {
 export default function MebioLogo({ size = 'md', variant = 'amber' }: Props) {
   const color = variant === 'white' ? '#ffffff' : '#d97706'
 
-  const scales = { sm: 0.7, md: 1, lg: 1.3 }
-  const s = scales[size]
-  const w = Math.round(28 * s)
-  const h = Math.round(22 * s)
+  const dims = {
+    sm: { w: 24, h: 18 },
+    md: { w: 34, h: 25 },
+    lg: { w: 44, h: 32 },
+  }
+  const { w, h } = dims[size]
   const textSize = size === 'sm' ? 'text-lg' : size === 'lg' ? 'text-3xl' : 'text-2xl'
 
   return (
     <div className="flex items-center gap-2">
-      {/* Иконка стула/дивана — форма буквы M */}
+      {/* Иконка — диван (левый) + стул (правый), образуют букву M */}
       <svg
         width={w}
         height={h}
-        viewBox="0 0 54 42"
+        viewBox="0 0 60 46"
         fill={color}
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* Левый диван — спинка (шире, ниже) */}
-        <rect x="0" y="8" width="20" height="16" rx="3" />
+        {/* Левое кресло — основная спинка (выше, левая часть) */}
+        <rect x="0" y="7" width="17" height="19" rx="3" />
+        {/* Левое кресло — подлокотник (ниже, правая часть) создаёт ступеньку */}
+        <rect x="15" y="13" width="13" height="13" rx="2" />
         {/* Левое сиденье */}
-        <rect x="0" y="22" width="26" height="6" rx="2" />
-        {/* Правый стул — спинка (уже, выше) */}
-        <rect x="32" y="2" width="14" height="22" rx="3" />
+        <rect x="0" y="24" width="30" height="7" rx="2" />
+
+        {/* Правый стул — спинка (выше и уже чем левая) */}
+        <rect x="34" y="0" width="15" height="24" rx="3" />
         {/* Правое сиденье */}
-        <rect x="26" y="22" width="28" height="6" rx="2" />
-        {/* Левые ножки */}
-        <rect x="2" y="28" width="5" height="12" rx="2" />
-        <rect x="19" y="28" width="5" height="12" rx="2" />
-        {/* Правые ножки */}
-        <rect x="29" y="28" width="5" height="12" rx="2" />
-        <rect x="46" y="28" width="5" height="12" rx="2" />
+        <rect x="32" y="24" width="28" height="7" rx="2" />
+
+        {/* Ножки левого кресла */}
+        <rect x="2" y="31" width="5" height="13" rx="2" />
+        <rect x="21" y="31" width="5" height="13" rx="2" />
+        {/* Ножки правого стула */}
+        <rect x="34" y="31" width="5" height="13" rx="2" />
+        <rect x="53" y="31" width="5" height="13" rx="2" />
       </svg>
 
-      {/* Текст */}
+      {/* Текст логотипа */}
       <span
         className={`${textSize} font-bold tracking-tight`}
-        style={{ color }}
+        style={{ color, fontFamily: 'inherit' }}
       >
         Mebio
       </span>
