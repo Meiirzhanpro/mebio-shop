@@ -1,4 +1,3 @@
-import { useTranslations, useLocale } from 'next-intl'
 import Link from 'next/link'
 import { getProducts } from '@/lib/kaspi-api'
 import { CATEGORIES } from '@/lib/categories'
@@ -41,14 +40,6 @@ export default async function HomePage({
 
         <div className="relative max-w-7xl mx-auto px-4 py-20 w-full">
           <div className="max-w-2xl">
-            {/* Бейдж */}
-            <div className="inline-flex items-center gap-2 bg-amber-500/20 border border-amber-500/30 rounded-full px-4 py-1.5 mb-6">
-              <Star size={14} className="text-amber-400 fill-amber-400" />
-              <span className="text-amber-300 text-sm font-medium">
-                {isKz ? 'Монотек ресми дүкені' : 'Официальный магазин Монотек'}
-              </span>
-            </div>
-
             <h1 className="text-5xl md:text-6xl font-extrabold text-white leading-tight mb-5">
               {isKz ? (
                 <>
@@ -67,8 +58,8 @@ export default async function HomePage({
 
             <p className="text-lg text-gray-300 mb-8 leading-relaxed">
               {isKz
-                ? 'Kaspi арқылы 0-0-24 бөліп төлеу. Бүкіл Қазақстан бойынша жеткізу.'
-                : 'Рассрочка 0-0-24 через Kaspi. Доставка и сборка по всему Казахстану.'}
+                ? 'Kaspi арқылы 0-0-24 бөліп төлеу. Бүкіл Қазақстан бойынша тегін жеткізу.'
+                : 'Рассрочка 0-0-24 через Kaspi. Бесплатная доставка по всему Казахстану.'}
             </p>
 
             <div className="flex flex-wrap gap-3">
@@ -91,8 +82,8 @@ export default async function HomePage({
             <div className="flex gap-8 mt-10 pt-8 border-t border-white/10">
               {[
                 { num: '500+', label: isKz ? 'Тауар' : 'Товаров' },
-                { num: '1000+', label: isKz ? 'Клиент' : 'Клиентов' },
-                { num: '5 жыл', label: isKz ? 'Нарықта' : 'На рынке' },
+                { num: '10 000+', label: isKz ? 'Клиент' : 'Клиентов' },
+                { num: isKz ? '5 жыл' : '5 лет', label: isKz ? 'нарықта' : 'на рынке' },
               ].map((stat) => (
                 <div key={stat.num}>
                   <div className="text-2xl font-bold text-amber-400">{stat.num}</div>
