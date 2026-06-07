@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="white"/>
+  <!-- Угловые маркеры -->
+  <rect x="10" y="10" width="60" height="60" rx="4" fill="none" stroke="#000" stroke-width="6"/>
+  <rect x="22" y="22" width="36" height="36" rx="2" fill="#000"/>
+  <rect x="130" y="10" width="60" height="60" rx="4" fill="none" stroke="#000" stroke-width="6"/>
+  <rect x="142" y="22" width="36" height="36" rx="2" fill="#000"/>
+  <rect x="10" y="130" width="60" height="60" rx="4" fill="none" stroke="#000" stroke-width="6"/>
+  <rect x="22" y="142" width="36" height="36" rx="2" fill="#000"/>
+  <!-- Паттерн внутри -->
+  <rect x="80" y="10" width="10" height="10" fill="#000"/>
+  <rect x="100" y="10" width="10" height="10" fill="#000"/>
+  <rect x="80" y="25" width="10" height="10" fill="#000"/>
+  <rect x="110" y="25" width="10" height="10" fill="#000"/>
+  <rect x="90" y="40" width="10" height="10" fill="#000"/>
+  <rect x="100" y="55" width="10" height="10" fill="#000"/>
+  <rect x="80" y="55" width="10" height="10" fill="#000"/>
+  <rect x="130" y="80" width="10" height="10" fill="#000"/>
+  <rect x="150" y="80" width="10" height="10" fill="#000"/>
+  <rect x="140" y="95" width="10" height="10" fill="#000"/>
+  <rect x="160" y="95" width="10" height="10" fill="#000"/>
+  <rect x="130" y="110" width="10" height="10" fill="#000"/>
+  <rect x="150" y="110" width="10" height="10" fill="#000"/>
+  <rect x="160" y="110" width="10" height="10" fill="#000"/>
+  <rect x="80" y="80" width="10" height="10" fill="#000"/>
+  <rect x="100" y="80" width="10" height="10" fill="#000"/>
+  <rect x="110" y="80" width="10" height="10" fill="#000"/>
+  <rect x="90" y="95" width="10" height="10" fill="#000"/>
+  <rect x="110" y="95" width="10" height="10" fill="#000"/>
+  <rect x="80" y="110" width="10" height="10" fill="#000"/>
+  <rect x="100" y="110" width="10" height="10" fill="#000"/>
+  <rect x="80" y="130" width="10" height="10" fill="#000"/>
+  <rect x="100" y="130" width="10" height="10" fill="#000"/>
+  <rect x="110" y="130" width="10" height="10" fill="#000"/>
+  <rect x="90" y="145" width="10" height="10" fill="#000"/>
+  <rect x="80" y="160" width="10" height="10" fill="#000"/>
+  <rect x="100" y="160" width="10" height="10" fill="#000"/>
+  <rect x="110" y="160" width="10" height="10" fill="#000"/>
+  <rect x="130" y="130" width="10" height="10" fill="#000"/>
+  <rect x="150" y="130" width="10" height="10" fill="#000"/>
+  <rect x="160" y="145" width="10" height="10" fill="#000"/>
+  <rect x="140" y="160" width="10" height="10" fill="#000"/>
+  <rect x="160" y="160" width="10" height="10" fill="#000"/>
+  <!-- Лого Kaspi посередине -->
+  <rect x="85" y="85" width="30" height="30" rx="4" fill="#ef3124"/>
+  <text x="100" y="105" font-family="Arial" font-size="14" font-weight="bold" fill="white" text-anchor="middle">K</text>
+</svg>

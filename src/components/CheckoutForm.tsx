@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 import { useCart } from '@/lib/cart-store'
 import { CheckCircle, CreditCard, Smartphone } from 'lucide-react'
 
@@ -21,6 +22,7 @@ export default function CheckoutForm({ locale }: Props) {
   const { items, total, clear } = useCart()
   const router = useRouter()
   const [done, setDone] = useState(false)
+  const [paidWith, setPaidWith] = useState<'kaspi' | 'card'>('kaspi')
   const [payment, setPayment] = useState<'kaspi' | 'card'>('kaspi')
   const [form, setForm] = useState({
     name: '', phone: '', city: '', address: '', comment: '',
@@ -44,7 +46,7 @@ export default function CheckoutForm({ locale }: Props) {
     e.preventDefault()
     const e2 = validate()
     if (Object.keys(e2).length > 0) { setErrors(e2); return }
-    // Здесь будет отправка заказа через API
+    setPaidWith(payment)
     clear()
     setDone(true)
   }
@@ -55,6 +57,60 @@ export default function CheckoutForm({ locale }: Props) {
   }
 
   if (done) {
+    if (paidWith === 'kaspi') {
+      return (
+        <div className="max-w-md mx-auto px-4 py-16 flex flex-col items-center text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">
+            {isKz ? 'Тапсырыс қабылданды!' : 'Заказ оформлен!'}
+          </h1>
+          <p className="text-gray-500 mb-8 text-sm">
+            {isKz
+              ? 'Kaspi арқылы төлем жасаңыз'
+              : 'Оплатите заказ через Kaspi'}
+          </p>
+
+          <div className="bg-white border-2 border-red-100 rounded-2xl p-6 mb-6 w-full">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <span className="text-red-500 font-bold text-lg">Kaspi</span>
+              <span className="text-gray-400 text-sm">QR</span>
+            </div>
+            <div className="flex justify-center mb-4">
+              <Image
+                src="/kaspi-qr-placeholder.svg"
+                alt="Kaspi QR"
+                width={200}
+                height={200}
+                className="rounded-xl"
+              />
+            </div>
+            <p className="text-xs text-gray-400">
+              {isKz
+                ? 'Kaspi қосымшасын ашыңыз → QR сканерлеу → Төлеу'
+                : 'Откройте приложение Kaspi → Сканировать QR → Оплатить'}
+            </p>
+          </div>
+
+          <div className="bg-amber-50 rounded-xl p-4 mb-8 text-sm text-amber-800 w-full text-left">
+            <p className="font-semibold mb-1">
+              {isKz ? 'Төлегеннен кейін:' : 'После оплаты:'}
+            </p>
+            <p className="text-amber-700">
+              {isKz
+                ? 'Менеджер сізбен байланысып, жеткізу уақытын растайды'
+                : 'Менеджер свяжется с вами и подтвердит время доставки'}
+            </p>
+          </div>
+
+          <a
+            href={`/${locale}`}
+            className="bg-amber-500 hover:bg-amber-600 text-white font-semibold px-8 py-3 rounded-xl transition-colors"
+          >
+            {isKz ? 'Басты бетке' : 'На главную'}
+          </a>
+        </div>
+      )
+    }
+
     return (
       <div className="max-w-lg mx-auto px-4 py-24 flex flex-col items-center text-center">
         <CheckCircle size={72} className="text-green-500 mb-6" />
