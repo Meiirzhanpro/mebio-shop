@@ -13,6 +13,8 @@ export default async function HomePage({
   const { locale } = await params
   const { products } = await getProducts({ size: 8 })
   const isKz = locale === 'kz'
+  const hits = products.slice(0, 4)
+  const newProducts = products.slice(4, 8)
 
   return (
     <div>
@@ -256,13 +258,13 @@ export default async function HomePage({
         </div>
       </section>
 
-      {/* Популярные товары */}
+      {/* Хиты продаж */}
       <section className="bg-gray-50 py-14">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between mb-7">
             <div>
               <h2 className="text-2xl font-bold text-gray-900">
-                {isKz ? 'Танымал тауарлар' : 'Популярные товары'}
+                {isKz ? 'Сатылым хиттері' : 'Хиты продаж'}
               </h2>
               <p className="text-sm text-gray-500 mt-1">
                 {isKz ? 'Ең көп сатып алынатын тауарлар' : 'Самые покупаемые позиции'}
@@ -276,8 +278,35 @@ export default async function HomePage({
             </Link>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            {products.map((product, i) => (
-              <ProductCard key={product.id} product={product} badge={i === 0 ? 'hit' : i === 1 ? 'new' : undefined} />
+            {hits.map((product) => (
+              <ProductCard key={product.id} product={product} badge="hit" />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Новинки каталога */}
+      <section className="bg-white py-14 border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex items-center justify-between mb-7">
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900">
+                {isKz ? 'Каталог жаңалықтары' : 'Новинки каталога'}
+              </h2>
+              <p className="text-sm text-gray-500 mt-1">
+                {isKz ? 'Жаңа келген тауарлар' : 'Свежие поступления'}
+              </p>
+            </div>
+            <Link
+              href={`/${locale}/catalog`}
+              className="text-amber-600 hover:text-amber-700 text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all"
+            >
+              {isKz ? 'Барлығын көру' : 'Смотреть все'} →
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {newProducts.map((product) => (
+              <ProductCard key={product.id} product={product} badge="new" />
             ))}
           </div>
         </div>

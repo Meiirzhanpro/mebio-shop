@@ -33,10 +33,18 @@ export default function ProductCard({ product, badge }: Props) {
     return Math.ceil(price / 24).toLocaleString('ru-RU') + ' ₸'
   }
 
+  const hasDiscount = product.originalPrice && product.originalPrice > product.price
+  const discountPct = hasDiscount
+    ? Math.round((1 - product.price / product.originalPrice!) * 100)
+    : 0
+
+  // Автоматический бейдж: скидка приоритетнее переданного badge
+  const activeBadge = hasDiscount ? 'sale' : badge
+
   const badgeConfig = {
-    hit: { label: locale === 'kz' ? 'Хит' : 'Хит', bg: 'bg-red-500' },
-    new: { label: locale === 'kz' ? 'Жаңа' : 'Новинка', bg: 'bg-emerald-500' },
-    sale: { label: locale === 'kz' ? 'Жеңілдік' : 'Скидка', bg: 'bg-amber-500' },
+    hit:  { label: locale === 'kz' ? 'Хит' : 'Хит',         bg: 'bg-red-500' },
+    new:  { label: locale === 'kz' ? 'Жаңа' : 'Новинка',    bg: 'bg-emerald-500' },
+    sale: { label: `-${discountPct}%`,                        bg: 'bg-red-500' },
   }
 
   return (
@@ -56,14 +64,7 @@ export default function ProductCard({ product, badge }: Props) {
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center text-gray-200">
-            <svg
-              width="72"
-              height="72"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="0.8"
-            >
+            <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.8">
               <rect x="3" y="3" width="18" height="18" rx="2" />
               <circle cx="8.5" cy="8.5" r="1.5" />
               <polyline points="21 15 16 10 5 21" />
@@ -71,12 +72,10 @@ export default function ProductCard({ product, badge }: Props) {
           </div>
         )}
 
-        {/* Бейдж */}
-        {badge && (
-          <div
-            className={`absolute top-2 left-2 ${badgeConfig[badge].bg} text-white text-xs font-bold px-2 py-0.5 rounded-lg`}
-          >
-            {badgeConfig[badge].label}
+        {/* Бейдж (скидка или hit/new) */}
+        {activeBadge && (
+          <div className={`absolute top-2 left-2 ${badgeConfig[activeBadge].bg} text-white text-xs font-bold px-2.5 py-1 rounded-lg shadow-sm`}>
+            {badgeConfig[activeBadge].label}
           </div>
         )}
 
@@ -103,12 +102,16 @@ export default function ProductCard({ product, badge }: Props) {
         <div className="mt-auto pt-3 space-y-2">
           <div className="flex items-end justify-between gap-2">
             <div>
-              <div className="text-xl font-extrabold text-gray-900">
+              {/* Зачёркнутая старая цена */}
+              {hasDiscount && (
+                <div className="text-xs text-gray-400 line-through leading-none mb-0.5">
+                  {formatPrice(product.originalPrice!)}
+                </div>
+              )}
+              <div className={`text-xl font-extrabold leading-none ${hasDiscount ? 'text-red-600' : 'text-gray-900'}`}>
                 {formatPrice(product.price)}
               </div>
-              <div
-                className={`text-xs font-medium mt-0.5 ${product.inStock ? 'text-emerald-600' : 'text-red-400'}`}
-              >
+              <div className={`text-xs font-medium mt-1 ${product.inStock ? 'text-emerald-600' : 'text-red-400'}`}>
                 {product.inStock ? t('in_stock') : t('out_of_stock')}
               </div>
             </div>
