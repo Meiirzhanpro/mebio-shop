@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { getProducts } from '@/lib/kaspi-api'
 import { CATEGORIES } from '@/lib/categories'
 import ProductCard from '@/components/ProductCard'
-import { Truck, CreditCard, Shield, Wrench, Star, Phone, ArrowRight } from 'lucide-react'
+import { Truck, CreditCard, Shield, Star, Phone, ArrowRight, MessageCircle, RefreshCw, Zap, Package } from 'lucide-react'
 
 const CATEGORY_META: Record<string, { gradient: string; iconBg: string; textColor: string; countRu: string; countKz: string }> = {
   divany:      { gradient: 'from-orange-500 to-amber-400',   iconBg: 'bg-orange-100',  textColor: 'text-orange-600',  countRu: '150+ моделей', countKz: '150+ үлгі' },
@@ -151,11 +151,6 @@ export default async function HomePage({
               desc: isKz ? 'Бүкіл Қазақстан бойынша' : 'По всему Казахстану',
             },
             {
-              icon: <Wrench className="text-amber-500" size={30} />,
-              title: isKz ? 'Тегін жинау' : 'Бесплатная сборка',
-              desc: isKz ? 'Шеберлер жеткізумен' : 'Мастера при доставке',
-            },
-            {
               icon: <Shield className="text-amber-500" size={30} />,
               title: isKz ? 'Сапа кепілдігі' : 'Гарантия качества',
               desc: isKz ? 'Тексерілген өндірушілер' : 'Проверенные производители',
@@ -164,6 +159,26 @@ export default async function HomePage({
               icon: <CreditCard className="text-amber-500" size={30} />,
               title: isKz ? '0-0-24 бөліп төлеу' : 'Рассрочка 0-0-24',
               desc: isKz ? 'Kaspi арқылы комиссиясыз' : 'Через Kaspi без комиссии',
+            },
+            {
+              icon: <MessageCircle className="text-amber-500" size={30} />,
+              title: isKz ? 'Тегін кеңес' : 'Консультация бесплатно',
+              desc: isKz ? 'Таңдауда көмектесеміз' : 'Поможем с выбором',
+            },
+            {
+              icon: <RefreshCw className="text-amber-500" size={30} />,
+              title: isKz ? 'Айырбас және қайтару' : 'Обмен и возврат',
+              desc: isKz ? '14 күн ішінде' : 'В течение 14 дней',
+            },
+            {
+              icon: <Zap className="text-amber-500" size={30} />,
+              title: isKz ? 'Жылдам жеткізу' : 'Быстрая доставка',
+              desc: isKz ? 'Қалада 1 күннен бастап' : 'От 1 дня по городу',
+            },
+            {
+              icon: <Package className="text-amber-500" size={30} />,
+              title: isKz ? 'Кең таңдау' : 'Широкий выбор',
+              desc: isKz ? '2000+ тауар қоймада' : '2000+ товаров в наличии',
             },
           ].map((item, i) => (
             <div key={i} className="flex items-start gap-3 p-4">
