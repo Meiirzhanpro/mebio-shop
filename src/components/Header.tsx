@@ -3,7 +3,7 @@
 import { useTranslations, useLocale } from 'next-intl'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { Search, Menu, X, Phone } from 'lucide-react'
+import { Search, Menu, X, Phone, LayoutGrid, ChevronRight } from 'lucide-react'
 import { useState } from 'react'
 import { CATEGORIES } from '@/lib/categories'
 import CartIcon from '@/components/CartIcon'
@@ -84,24 +84,28 @@ export default function Header() {
       </div>
 
       {/* Category nav */}
-      <nav className="border-t border-gray-100 hidden md:block">
+      <nav className="border-t border-gray-100 hidden md:block bg-gray-50/50">
         <div className="max-w-7xl mx-auto px-4">
-          <ul className="flex items-center gap-1 overflow-x-auto">
-            <li>
+          <ul className="flex items-center overflow-x-auto">
+            {/* Каталог — выделенная кнопка */}
+            <li className="flex-shrink-0 pr-3 mr-2 border-r border-gray-200">
               <Link
                 href={`/${locale}/catalog`}
-                className="block py-3 px-3 text-sm font-medium text-gray-700 hover:text-amber-600 hover:bg-amber-50 rounded transition-colors whitespace-nowrap"
+                className="flex items-center gap-1.5 my-2 px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white text-sm font-bold rounded-lg transition-colors whitespace-nowrap shadow-sm"
               >
+                <LayoutGrid size={15} />
                 {t('catalog')}
               </Link>
             </li>
+            {/* Категории */}
             {CATEGORIES.map((cat) => (
-              <li key={cat.id}>
+              <li key={cat.id} className="flex-shrink-0">
                 <Link
                   href={`/${locale}/catalog/${cat.slug}`}
-                  className="block py-3 px-3 text-sm text-gray-600 hover:text-amber-600 hover:bg-amber-50 rounded transition-colors whitespace-nowrap"
+                  className="flex items-center gap-1 py-3.5 px-3 text-sm text-gray-600 hover:text-amber-600 hover:bg-amber-50 rounded transition-colors whitespace-nowrap group"
                 >
-                  {locale === 'kz' ? cat.nameKz : cat.nameRu}
+                  <span>{locale === 'kz' ? cat.nameKz : cat.nameRu}</span>
+                  <ChevronRight size={12} className="opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-200 text-amber-500" />
                 </Link>
               </li>
             ))}
