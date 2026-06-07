@@ -1,0 +1,94 @@
+{
+  "nav": {
+    "catalog": "Каталог",
+    "delivery": "Жеткізу",
+    "about": "Біз туралы",
+    "contacts": "Байланыс",
+    "cart": "Себет",
+    "search": "Тауар іздеу..."
+  },
+  "home": {
+    "hero_title": "Үйіңіз үшін жиhаз",
+    "hero_subtitle": "Бүкіл Қазақстан бойынша жеткізумен сапалы жиhаздың кең таңдауы",
+    "hero_button": "Каталогты қарау",
+    "categories_title": "Санаттар",
+    "popular_title": "Танымал тауарлар",
+    "why_us_title": "Неліктен бізді таңдайды",
+    "installment": "0-0-24 бөліп төлеу",
+    "installment_desc": "Қазір сатып алыңыз, кейін Kaspi арқылы төлеңіз",
+    "delivery": "Қазақстан бойынша жеткізу",
+    "delivery_desc": "Күн сайын 9:00-ден 23:00-ге дейін бүкіл ел бойынша",
+    "guarantee": "Сапа кепілдігі",
+    "guarantee_desc": "Тек тексерілген өндірушілер мен брендтер",
+    "assembly": "Тегін жинау",
+    "assembly_desc": "Жеткізу кезінде кәсіби жинау"
+  },
+  "catalog": {
+    "title": "Каталог",
+    "all": "Барлық тауарлар",
+    "sort": "Сұрыптау",
+    "sort_popular": "Танымалдылығы бойынша",
+    "sort_price_asc": "Алдымен арзан",
+    "sort_price_desc": "Алдымен қымбат",
+    "filter_price": "Баға (тг)",
+    "filter_brand": "Бренд",
+    "filter_category": "Санат",
+    "apply": "Қолдану",
+    "reset": "Тазалау",
+    "found": "Тауар табылды",
+    "empty": "Тауар табылмады"
+  },
+  "product": {
+    "buy": "Сатып алу",
+    "add_to_cart": "Себетке",
+    "installment": "Бөліп төлеу",
+    "in_stock": "Қоймада бар",
+    "out_of_stock": "Қоймада жоқ",
+    "description": "Сипаттама",
+    "characteristics": "Сипаттамалар",
+    "delivery_info": "Жеткізу және төлем",
+    "brand": "Бренд",
+    "category": "Санат",
+    "article": "Артикул"
+  },
+  "cart": {
+    "title": "Себет",
+    "empty": "Себет бос",
+    "empty_desc": "Каталогқа өтіп, тауарлар таңдаңыз",
+    "go_catalog": "Каталогқа",
+    "total": "Барлығы",
+    "order": "Тапсырыс беру",
+    "remove": "Жою",
+    "quantity": "Саны"
+  },
+  "delivery": {
+    "title": "Жеткізу және төлем",
+    "delivery_title": "Жеткізу",
+    "delivery_desc": "Бүкіл Қазақстан бойынша күн сайын 9:00-ден 23:00-ге дейін жеткіземіз.",
+    "payment_title": "Төлем",
+    "kaspi_title": "Kaspi Pay және бөліп төлеу",
+    "kaspi_desc": "Комиссиясыз 0-0-6, 0-0-12, 0-0-24 бөліп төлеу",
+    "card_title": "Банк картасы",
+    "card_desc": "Visa, Mastercard, кез келген банк",
+    "cash_title": "Қолма-қол",
+    "cash_desc": "Тауар алған кезде"
+  },
+  "footer": {
+    "catalog": "Каталог",
+    "delivery": "Жеткізу",
+    "about": "Біз туралы",
+    "contacts": "Байланыс",
+    "rights": "Барлық құқықтар қорғалған",
+    "work_hours": "Күн сайын 9:00 – 23:00"
+  },
+  "categories": {
+    "sofas": "Диван және кресло",
+    "beds": "Төсектер",
+    "wardrobes": "Шкафтар",
+    "tables": "Үстел және орындықтар",
+    "living_room": "Қонақ бөлме",
+    "bedroom": "Жатын бөлме",
+    "kitchen": "Ас үй",
+    "hallway": "Дәліз"
+  }
+}
