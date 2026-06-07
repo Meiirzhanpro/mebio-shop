@@ -88,27 +88,38 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-4">
           <ul className="flex items-center overflow-x-auto">
             {/* Каталог — выделенная кнопка */}
-            <li className="flex-shrink-0 pr-3 mr-2 border-r border-gray-200">
+            <li className="flex-shrink-0 pr-3 mr-2 border-r border-gray-200 py-2">
               <Link
                 href={`/${locale}/catalog`}
-                className="flex items-center gap-1.5 my-2 px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white text-sm font-bold rounded-lg transition-colors whitespace-nowrap shadow-sm"
+                className={`flex items-center gap-1.5 px-4 py-2 text-sm font-bold rounded-lg transition-colors whitespace-nowrap shadow-sm ${
+                  pathname === `/${locale}/catalog`
+                    ? 'bg-amber-600 text-white'
+                    : 'bg-amber-500 hover:bg-amber-600 text-white'
+                }`}
               >
                 <LayoutGrid size={15} />
                 {t('catalog')}
               </Link>
             </li>
             {/* Категории */}
-            {CATEGORIES.map((cat) => (
-              <li key={cat.id} className="flex-shrink-0">
-                <Link
-                  href={`/${locale}/catalog/${cat.slug}`}
-                  className="flex items-center gap-1 py-3.5 px-3 text-sm text-gray-600 hover:text-amber-600 hover:bg-amber-50 rounded transition-colors whitespace-nowrap group"
-                >
-                  <span>{locale === 'kz' ? cat.nameKz : cat.nameRu}</span>
-                  <ChevronRight size={12} className="opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-200 text-amber-500" />
-                </Link>
-              </li>
-            ))}
+            {CATEGORIES.map((cat) => {
+              const isActive = pathname === `/${locale}/catalog/${cat.slug}`
+              return (
+                <li key={cat.id} className="flex-shrink-0">
+                  <Link
+                    href={`/${locale}/catalog/${cat.slug}`}
+                    className={`flex items-center gap-1 py-3.5 px-3 text-sm rounded transition-colors whitespace-nowrap group ${
+                      isActive
+                        ? 'text-amber-600 font-semibold bg-amber-50'
+                        : 'text-gray-600 hover:text-amber-600 hover:bg-amber-50'
+                    }`}
+                  >
+                    <span>{locale === 'kz' ? cat.nameKz : cat.nameRu}</span>
+                    <ChevronRight size={12} className={`-translate-x-1 transition-all duration-200 text-amber-500 ${isActive ? 'opacity-100 translate-x-0' : 'opacity-0 group-hover:opacity-100 group-hover:translate-x-0'}`} />
+                  </Link>
+                </li>
+              )
+            })}
           </ul>
         </div>
       </nav>
