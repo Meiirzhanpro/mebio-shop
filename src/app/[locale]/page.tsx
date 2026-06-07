@@ -2,7 +2,18 @@ import Link from 'next/link'
 import { getProducts } from '@/lib/kaspi-api'
 import { CATEGORIES } from '@/lib/categories'
 import ProductCard from '@/components/ProductCard'
-import { Truck, CreditCard, Shield, Star, Phone, ArrowRight, MessageCircle, RefreshCw, Zap, Package } from 'lucide-react'
+import { Truck, CreditCard, Shield, Star, Phone, ArrowRight, MessageCircle, RefreshCw, Zap, Package, Sofa, BedDouble, Archive, Home, Table2, Moon, DoorOpen, ChefHat } from 'lucide-react'
+
+const CATEGORY_ICONS: Record<string, React.ReactNode> = {
+  divany:      <Sofa size={26} />,
+  krovati:     <BedDouble size={26} />,
+  shkaf:       <Archive size={26} />,
+  gostinaya:   <Home size={26} />,
+  stoly:       <Table2 size={26} />,
+  spalnya:     <Moon size={26} />,
+  prikhozhaya: <DoorOpen size={26} />,
+  kukhnya:     <ChefHat size={26} />,
+}
 
 const CATEGORY_META: Record<string, { gradient: string; iconBg: string; textColor: string; countRu: string; countKz: string }> = {
   divany:      { gradient: 'from-orange-500 to-amber-400',   iconBg: 'bg-orange-100',  textColor: 'text-orange-600',  countRu: '150+ моделей', countKz: '150+ үлгі' },
@@ -228,6 +239,7 @@ export default async function HomePage({
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {CATEGORIES.map((cat) => {
             const meta = CATEGORY_META[cat.slug] || { gradient: 'from-gray-500 to-gray-400', iconBg: 'bg-gray-100', textColor: 'text-gray-600', countRu: '', countKz: '' }
+            const icon = CATEGORY_ICONS[cat.slug]
             return (
               <Link
                 key={cat.id}
@@ -239,8 +251,8 @@ export default async function HomePage({
 
                 <div className="p-5">
                   {/* Иконка */}
-                  <div className={`w-12 h-12 ${meta.iconBg} rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                    {cat.icon}
+                  <div className={`w-12 h-12 ${meta.iconBg} rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 ${meta.textColor}`}>
+                    {icon}
                   </div>
 
                   {/* Название */}
