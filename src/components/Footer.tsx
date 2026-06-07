@@ -12,7 +12,6 @@ export default function Footer() {
         {/* Brand */}
         <div>
           <span className="text-2xl font-bold text-amber-500">M<em>e</em>bio</span>
-          <p className="mt-1 text-xs text-amber-400">mebio.kz</p>
           <p className="mt-3 text-sm text-gray-400 leading-relaxed">
             {locale === 'kz'
               ? 'Бүкіл Қазақстан бойынша жеткізумен сапалы жиhаз'
