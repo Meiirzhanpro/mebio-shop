@@ -3,6 +3,7 @@ import { CATEGORIES } from '@/lib/categories'
 import { CATEGORY_META, CATEGORY_ICONS } from '@/lib/category-meta'
 import ProductCard from '@/components/ProductCard'
 import SortSelect from '@/components/SortSelect'
+import CatalogFilters from '@/components/CatalogFilters'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 
@@ -11,19 +12,20 @@ export default async function CatalogPage({
   searchParams,
 }: {
   params: Promise<{ locale: string }>
-  searchParams: Promise<{ q?: string; sort?: string }>
+  searchParams: Promise<{ q?: string; sort?: string; minPrice?: string; maxPrice?: string; inStock?: string }>
 }) {
   const { locale } = await params
-  const { q, sort } = await searchParams
+  const { q, sort, minPrice, maxPrice, inStock } = await searchParams
   const { products } = await getProducts({ size: 48 })
   const isKz = locale === 'kz'
 
-  const filtered = q
-    ? products.filter((p) =>
-        p.name.toLowerCase().includes(q.toLowerCase()) ||
-        p.brand.toLowerCase().includes(q.toLowerCase())
-      )
-    : products
+  const filtered = products.filter((p) => {
+    if (q && !p.name.toLowerCase().includes(q.toLowerCase()) && !p.brand.toLowerCase().includes(q.toLowerCase())) return false
+    if (minPrice && p.price < Number(minPrice)) return false
+    if (maxPrice && p.price > Number(maxPrice)) return false
+    if (inStock === '1' && !p.inStock) return false
+    return true
+  })
 
   const sorted = [...filtered].sort((a, b) => {
     if (sort === 'price_asc') return a.price - b.price
@@ -102,7 +104,10 @@ export default async function CatalogPage({
               {isKz ? `${sorted.length} тауар табылды` : `Найдено ${sorted.length} товаров`}
             </p>
           </div>
-          <SortSelect locale={locale} defaultValue={sort || ''} />
+          <div className="flex items-center gap-2">
+            <CatalogFilters locale={locale} minPrice={minPrice} maxPrice={maxPrice} inStock={inStock} />
+            <SortSelect locale={locale} defaultValue={sort || ''} />
+          </div>
         </div>
 
         {sorted.length > 0 ? (
