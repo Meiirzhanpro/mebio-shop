@@ -1,6 +1,7 @@
 import { useTranslations, useLocale } from 'next-intl'
 import Link from 'next/link'
 import { Phone, MapPin, Clock } from 'lucide-react'
+import MebioLogo from '@/components/MebioLogo'
 
 function InstagramIcon() {
   return (
@@ -27,7 +28,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Brand */}
         <div>
-          <span className="text-2xl font-bold text-amber-500">M<em>e</em>bio</span>
+          <MebioLogo size="md" variant="white" />
           <p className="mt-3 text-sm text-gray-400 leading-relaxed">
             {locale === 'kz'
               ? 'Бүкіл Қазақстан бойынша жеткізумен сапалы жиhаз'

@@ -7,6 +7,7 @@ import { Search, Menu, X, Phone, LayoutGrid, ChevronRight } from 'lucide-react'
 import { useState } from 'react'
 import { CATEGORIES } from '@/lib/categories'
 import CartIcon from '@/components/CartIcon'
+import MebioLogo from '@/components/MebioLogo'
 
 export default function Header() {
   const t = useTranslations('nav')
@@ -48,8 +49,8 @@ export default function Header() {
       {/* Main header */}
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-4">
         {/* Logo */}
-        <Link href={`/${locale}`} className="flex-shrink-0 flex flex-col leading-none">
-          <span className="text-2xl font-bold text-amber-600 tracking-tight">M<em>e</em>bio</span>
+        <Link href={`/${locale}`} className="flex-shrink-0">
+          <MebioLogo size="md" variant="amber" />
         </Link>
 
         {/* Search */}
