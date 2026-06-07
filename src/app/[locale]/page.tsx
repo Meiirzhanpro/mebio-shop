@@ -147,8 +147,8 @@ export default async function HomePage({
           {[
             {
               icon: <Truck className="text-amber-500" size={30} />,
-              title: isKz ? 'Қазақстан бойынша жеткізу' : 'Доставка по Казахстану',
-              desc: isKz ? 'Бүкіл Қазақстан бойынша' : 'По всему Казахстану',
+              title: isKz ? 'Бүкіл Қазақстан бойынша жеткізу' : 'Доставка по всему Казахстану',
+              desc: '',
             },
             {
               icon: <Shield className="text-amber-500" size={30} />,
