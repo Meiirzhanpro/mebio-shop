@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useCart } from '@/lib/cart-store'
-import { CheckCircle, CreditCard, Banknote, Smartphone } from 'lucide-react'
+import { CheckCircle, CreditCard, Smartphone } from 'lucide-react'
 
 interface Props {
   locale: string
@@ -21,7 +21,7 @@ export default function CheckoutForm({ locale }: Props) {
   const { items, total, clear } = useCart()
   const router = useRouter()
   const [done, setDone] = useState(false)
-  const [payment, setPayment] = useState<'kaspi' | 'card' | 'cash'>('kaspi')
+  const [payment, setPayment] = useState<'kaspi' | 'card'>('kaspi')
   const [form, setForm] = useState({
     name: '', phone: '', city: '', address: '', comment: '',
   })
@@ -151,7 +151,6 @@ export default function CheckoutForm({ locale }: Props) {
               {([
                 { id: 'kaspi', icon: <Smartphone size={20} />, label: 'Kaspi Pay', desc: isKz ? '0-0-24 бөліп төлеу' : 'Рассрочка 0-0-24' },
                 { id: 'card',  icon: <CreditCard size={20} />, label: isKz ? 'Банк картасы' : 'Банковская карта', desc: 'Visa / Mastercard' },
-                { id: 'cash',  icon: <Banknote size={20} />,   label: isKz ? 'Қолма-қол' : 'Наличные', desc: isKz ? 'Тауар алған кезде' : 'При получении' },
               ] as const).map((opt) => (
                 <label
                   key={opt.id}
