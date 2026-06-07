@@ -82,7 +82,7 @@ export default async function HomePage({
             {/* Быстрые цифры */}
             <div className="flex gap-8 mt-10 pt-8 border-t border-white/10">
               {[
-                { num: '500+', label: isKz ? 'Тауар' : 'Товаров' },
+                { num: '2000+', label: isKz ? 'Тауар' : 'Товаров' },
                 { num: '10 000+', label: isKz ? 'Клиент' : 'Клиентов' },
                 { num: isKz ? '5 жыл' : '5 лет', label: isKz ? 'нарықта' : 'на рынке' },
               ].map((stat) => (
