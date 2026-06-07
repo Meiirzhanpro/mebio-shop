@@ -2,17 +2,17 @@ import Link from 'next/link'
 import { getProducts } from '@/lib/kaspi-api'
 import { CATEGORIES } from '@/lib/categories'
 import ProductCard from '@/components/ProductCard'
-import { Truck, CreditCard, Shield, Wrench, Star, Phone } from 'lucide-react'
+import { Truck, CreditCard, Shield, Wrench, Star, Phone, ArrowRight } from 'lucide-react'
 
-const CATEGORY_COLORS: Record<string, string> = {
-  divany: 'from-orange-100 to-orange-50',
-  krovati: 'from-blue-100 to-blue-50',
-  shkafy: 'from-emerald-100 to-emerald-50',
-  gostinye: 'from-purple-100 to-purple-50',
-  prikhozhe: 'from-yellow-100 to-yellow-50',
-  kuhni: 'from-red-100 to-red-50',
-  detskie: 'from-pink-100 to-pink-50',
-  ofis: 'from-gray-100 to-gray-50',
+const CATEGORY_META: Record<string, { gradient: string; iconBg: string; textColor: string; countRu: string; countKz: string }> = {
+  divany:      { gradient: 'from-orange-500 to-amber-400',   iconBg: 'bg-orange-100',  textColor: 'text-orange-600',  countRu: '150+ моделей', countKz: '150+ үлгі' },
+  krovati:     { gradient: 'from-blue-500 to-cyan-400',      iconBg: 'bg-blue-100',    textColor: 'text-blue-600',    countRu: '80+ моделей',  countKz: '80+ үлгі' },
+  shkaf:       { gradient: 'from-emerald-500 to-teal-400',   iconBg: 'bg-emerald-100', textColor: 'text-emerald-600', countRu: '60+ моделей',  countKz: '60+ үлгі' },
+  gostinaya:   { gradient: 'from-purple-500 to-violet-400',  iconBg: 'bg-purple-100',  textColor: 'text-purple-600',  countRu: '40+ комплектов', countKz: '40+ жиынтық' },
+  stoly:       { gradient: 'from-yellow-500 to-amber-400',   iconBg: 'bg-yellow-100',  textColor: 'text-yellow-600',  countRu: '90+ моделей',  countKz: '90+ үлгі' },
+  spalnya:     { gradient: 'from-pink-500 to-rose-400',      iconBg: 'bg-pink-100',    textColor: 'text-pink-600',    countRu: '50+ комплектов', countKz: '50+ жиынтық' },
+  prikhozhaya: { gradient: 'from-slate-500 to-gray-400',     iconBg: 'bg-slate-100',   textColor: 'text-slate-600',   countRu: '35+ моделей',  countKz: '35+ үлгі' },
+  kukhnya:     { gradient: 'from-red-500 to-orange-400',     iconBg: 'bg-red-100',     textColor: 'text-red-600',     countRu: '45+ гарнитуров', countKz: '45+ гарнитур' },
 }
 
 export default async function HomePage({
@@ -181,26 +181,50 @@ export default async function HomePage({
 
       {/* Категории */}
       <section className="max-w-7xl mx-auto px-4 py-14">
-        <div className="flex items-center justify-between mb-7">
-          <h2 className="text-2xl font-bold text-gray-900">
-            {isKz ? 'Санаттар' : 'Категории'}
-          </h2>
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <h2 className="text-2xl font-bold text-gray-900">
+              {isKz ? 'Санаттар бойынша шолу' : 'Выбирайте по категориям'}
+            </h2>
+            <p className="text-sm text-gray-500 mt-1">
+              {isKz ? 'Барлық санаттарда 2000+ тауар' : 'Более 2000 товаров во всех категориях'}
+            </p>
+          </div>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {CATEGORIES.map((cat) => {
-            const gradient = CATEGORY_COLORS[cat.slug] || 'from-gray-100 to-gray-50'
+            const meta = CATEGORY_META[cat.slug] || { gradient: 'from-gray-500 to-gray-400', iconBg: 'bg-gray-100', textColor: 'text-gray-600', countRu: '', countKz: '' }
             return (
               <Link
                 key={cat.id}
                 href={`/${locale}/catalog/${cat.slug}`}
-                className={`flex flex-col items-center gap-2 p-4 rounded-2xl bg-gradient-to-b ${gradient} hover:shadow-md border border-transparent hover:border-amber-200 transition-all duration-200 text-center group hover:-translate-y-0.5`}
+                className="group relative rounded-2xl overflow-hidden bg-white border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
               >
-                <span className="text-3xl group-hover:scale-110 transition-transform duration-200">
-                  {cat.icon}
-                </span>
-                <span className="text-xs font-semibold text-gray-700 group-hover:text-amber-700 leading-tight">
-                  {isKz ? cat.nameKz : cat.nameRu}
-                </span>
+                {/* Цветная полоска сверху */}
+                <div className={`h-1.5 w-full bg-gradient-to-r ${meta.gradient}`} />
+
+                <div className="p-5">
+                  {/* Иконка */}
+                  <div className={`w-12 h-12 ${meta.iconBg} rounded-xl flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                    {cat.icon}
+                  </div>
+
+                  {/* Название */}
+                  <h3 className="font-bold text-gray-900 text-sm leading-tight mb-1">
+                    {isKz ? cat.nameKz : cat.nameRu}
+                  </h3>
+
+                  {/* Количество */}
+                  <p className={`text-xs font-medium ${meta.textColor}`}>
+                    {isKz ? meta.countKz : meta.countRu}
+                  </p>
+
+                  {/* Стрелка */}
+                  <div className="mt-4 flex items-center gap-1 text-xs text-gray-400 group-hover:text-gray-700 transition-colors">
+                    <span>{isKz ? 'Қарау' : 'Смотреть'}</span>
+                    <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform duration-200" />
+                  </div>
+                </div>
               </Link>
             )
           })}
