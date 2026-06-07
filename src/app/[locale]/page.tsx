@@ -142,55 +142,74 @@ export default async function HomePage({
       </section>
 
       {/* Преимущества */}
-      <section className="bg-white border-b border-gray-100 py-8">
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6">
-          {[
-            {
-              icon: <Truck className="text-amber-500" size={30} />,
-              title: isKz ? 'Бүкіл Қазақстан бойынша жеткізу' : 'Доставка по всему Казахстану',
-              desc: '',
-            },
-            {
-              icon: <Shield className="text-amber-500" size={30} />,
-              title: isKz ? 'Сапа кепілдігі' : 'Гарантия качества',
-              desc: isKz ? 'Тексерілген өндірушілер' : 'Проверенные производители',
-            },
-            {
-              icon: <CreditCard className="text-amber-500" size={30} />,
-              title: isKz ? '0-0-24 бөліп төлеу' : 'Рассрочка 0-0-24',
-              desc: isKz ? 'Kaspi арқылы комиссиясыз' : 'Через Kaspi без комиссии',
-            },
-            {
-              icon: <MessageCircle className="text-amber-500" size={30} />,
-              title: isKz ? 'Тегін кеңес' : 'Консультация бесплатно',
-              desc: isKz ? 'Таңдауда көмектесеміз' : 'Поможем с выбором',
-            },
-            {
-              icon: <RefreshCw className="text-amber-500" size={30} />,
-              title: isKz ? 'Айырбас және қайтару' : 'Обмен и возврат',
-              desc: isKz ? '14 күн ішінде' : 'В течение 14 дней',
-            },
-            {
-              icon: <Zap className="text-amber-500" size={30} />,
-              title: isKz ? 'Жылдам жеткізу' : 'Быстрая доставка',
-              desc: isKz ? 'Қалада 1 күннен бастап' : 'От 1 дня по городу',
-            },
-            {
-              icon: <Package className="text-amber-500" size={30} />,
-              title: isKz ? 'Кең таңдау' : 'Широкий выбор',
-              desc: isKz ? '2000+ тауар қоймада' : '2000+ товаров в наличии',
-            },
-          ].map((item, i) => (
-            <div key={i} className="flex items-start gap-3 p-4">
-              <div className="flex-shrink-0 w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center">
-                {item.icon}
+      <section className="bg-white border-b border-gray-100 py-10">
+        <div className="max-w-7xl mx-auto px-4 space-y-4">
+          {/* Ряд 1 — топ 4 */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              {
+                icon: <CreditCard className="text-amber-500" size={28} />,
+                title: isKz ? '0-0-24 бөліп төлеу' : 'Рассрочка 0-0-24',
+                desc: isKz ? 'Kaspi арқылы комиссиясыз' : 'Через Kaspi без комиссии',
+              },
+              {
+                icon: <Truck className="text-amber-500" size={28} />,
+                title: isKz ? 'Бүкіл Қазақстан бойынша жеткізу' : 'Доставка по всему Казахстану',
+                desc: '',
+              },
+              {
+                icon: <Package className="text-amber-500" size={28} />,
+                title: isKz ? 'Кең таңдау' : 'Широкий выбор',
+                desc: isKz ? '2000+ тауар қоймада' : '2000+ товаров в наличии',
+              },
+              {
+                icon: <Shield className="text-amber-500" size={28} />,
+                title: isKz ? 'Сапа кепілдігі' : 'Гарантия качества',
+                desc: isKz ? 'Тексерілген өндірушілер' : 'Проверенные производители',
+              },
+            ].map((item, i) => (
+              <div key={i} className="flex items-start gap-3 p-4 rounded-2xl bg-amber-50/50 border border-amber-100">
+                <div className="flex-shrink-0 w-11 h-11 bg-white rounded-xl flex items-center justify-center shadow-sm">
+                  {item.icon}
+                </div>
+                <div>
+                  <div className="font-semibold text-gray-800 text-sm leading-tight">{item.title}</div>
+                  {item.desc && <div className="text-xs text-gray-500 mt-0.5">{item.desc}</div>}
+                </div>
               </div>
-              <div>
-                <div className="font-semibold text-gray-800 text-sm leading-tight">{item.title}</div>
-                <div className="text-xs text-gray-500 mt-0.5">{item.desc}</div>
+            ))}
+          </div>
+
+          {/* Ряд 2 — 3 по центру */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:max-w-3xl md:mx-auto">
+            {[
+              {
+                icon: <Zap className="text-amber-500" size={28} />,
+                title: isKz ? 'Жылдам жеткізу' : 'Быстрая доставка',
+                desc: isKz ? 'Қалада 1 күннен бастап' : 'От 1 дня по городу',
+              },
+              {
+                icon: <MessageCircle className="text-amber-500" size={28} />,
+                title: isKz ? 'Тегін кеңес' : 'Консультация бесплатно',
+                desc: isKz ? 'Таңдауда көмектесеміз' : 'Поможем с выбором',
+              },
+              {
+                icon: <RefreshCw className="text-amber-500" size={28} />,
+                title: isKz ? 'Айырбас және қайтару' : 'Обмен и возврат',
+                desc: isKz ? '14 күн ішінде' : 'В течение 14 дней',
+              },
+            ].map((item, i) => (
+              <div key={i} className="flex items-start gap-3 p-4 rounded-2xl bg-gray-50 border border-gray-100">
+                <div className="flex-shrink-0 w-11 h-11 bg-white rounded-xl flex items-center justify-center shadow-sm">
+                  {item.icon}
+                </div>
+                <div>
+                  <div className="font-semibold text-gray-800 text-sm leading-tight">{item.title}</div>
+                  {item.desc && <div className="text-xs text-gray-500 mt-0.5">{item.desc}</div>}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
