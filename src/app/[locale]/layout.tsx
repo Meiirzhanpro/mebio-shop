@@ -16,15 +16,15 @@ export async function generateMetadata({
   const isKz = locale === 'kz'
   return {
     title: {
-      default: isKz ? 'MEBIO — Жиhаз дүкені | mebio.kz' : 'MEBIO — Интернет-магазин мебели | mebio.kz',
-      template: '%s | MEBIO mebio.kz',
+      default: isKz ? 'Mebio — Жиhаз дүкені | mebio.kz' : 'Mebio — Интернет-магазин мебели | mebio.kz',
+      template: '%s | Mebio mebio.kz',
     },
     description: isKz
       ? 'Бүкіл Қазақстан бойынша жеткізумен сапалы жиhаз. Kaspi бөліп төлеу 0-0-24.'
       : 'Качественная мебель с доставкой по всему Казахстану. Рассрочка Kaspi 0-0-24.',
     metadataBase: new URL('https://mebio.kz'),
     openGraph: {
-      siteName: 'MEBIO',
+      siteName: 'Mebio',
       locale: isKz ? 'kk_KZ' : 'ru_RU',
     },
   }

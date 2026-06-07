@@ -11,7 +11,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
         {/* Brand */}
         <div>
-          <span className="text-2xl font-bold text-amber-500">MEBIO</span>
+          <span className="text-2xl font-bold text-amber-500">Mebio</span>
           <p className="mt-1 text-xs text-amber-400">mebio.kz</p>
           <p className="mt-3 text-sm text-gray-400 leading-relaxed">
             {locale === 'kz'
@@ -69,7 +69,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-gray-800 py-4 text-center text-xs text-gray-500">
-        © {new Date().getFullYear()} MEBIO (mebio.kz). {t('rights')}
+        © {new Date().getFullYear()} Mebio (mebio.kz). {t('rights')}
       </div>
     </footer>
   )
