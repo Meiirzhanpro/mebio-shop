@@ -148,7 +148,7 @@ export default async function HomePage({
             {
               icon: <Truck className="text-amber-500" size={30} />,
               title: isKz ? 'Қазақстан бойынша жеткізу' : 'Доставка по Казахстану',
-              desc: isKz ? 'Күн сайын 9:00 – 18:00' : 'Ежедневно 9:00 – 18:00',
+              desc: isKz ? 'Бүкіл Қазақстан бойынша' : 'По всему Казахстану',
             },
             {
               icon: <Wrench className="text-amber-500" size={30} />,
