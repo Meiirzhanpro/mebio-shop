@@ -3,7 +3,18 @@ import Link from 'next/link'
 import { getProducts } from '@/lib/kaspi-api'
 import { CATEGORIES } from '@/lib/categories'
 import ProductCard from '@/components/ProductCard'
-import { Truck, CreditCard, Shield, Wrench } from 'lucide-react'
+import { Truck, CreditCard, Shield, Wrench, Star, Phone } from 'lucide-react'
+
+const CATEGORY_COLORS: Record<string, string> = {
+  divany: 'from-orange-100 to-orange-50',
+  krovati: 'from-blue-100 to-blue-50',
+  shkafy: 'from-emerald-100 to-emerald-50',
+  gostinye: 'from-purple-100 to-purple-50',
+  prikhozhe: 'from-yellow-100 to-yellow-50',
+  kuhni: 'from-red-100 to-red-50',
+  detskie: 'from-pink-100 to-pink-50',
+  ofis: 'from-gray-100 to-gray-50',
+}
 
 export default async function HomePage({
   params,
@@ -11,102 +22,295 @@ export default async function HomePage({
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
-  const { products } = await getProducts({ size: 6 })
+  const { products } = await getProducts({ size: 8 })
+  const isKz = locale === 'kz'
 
   return (
     <div>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-gray-900 via-gray-800 to-amber-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 py-20 flex flex-col items-center text-center">
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
-            {locale === 'kz' ? 'Үйіңіз үшін жиhаз' : 'Мебель для вашего дома'}
-          </h1>
-          <p className="text-lg text-gray-300 max-w-2xl mb-8">
-            {locale === 'kz'
-              ? 'Бүкіл Қазақстан бойынша жеткізумен сапалы жиhаздың кең таңдауы'
-              : 'Широкий выбор качественной мебели с доставкой по всему Казахстану'}
-          </p>
-          <Link
-            href={`/${locale}/catalog`}
-            className="bg-amber-500 hover:bg-amber-400 text-white font-semibold px-8 py-3.5 rounded-xl text-lg transition-colors"
-          >
-            {locale === 'kz' ? 'Каталогты қарау' : 'Смотреть каталог'}
-          </Link>
+      <section
+        className="relative min-h-[560px] flex items-center"
+        style={{
+          background:
+            'linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 70%, #533483 100%)',
+        }}
+      >
+        {/* Декоративные круги */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl" />
+
+        <div className="relative max-w-7xl mx-auto px-4 py-20 w-full">
+          <div className="max-w-2xl">
+            {/* Бейдж */}
+            <div className="inline-flex items-center gap-2 bg-amber-500/20 border border-amber-500/30 rounded-full px-4 py-1.5 mb-6">
+              <Star size={14} className="text-amber-400 fill-amber-400" />
+              <span className="text-amber-300 text-sm font-medium">
+                {isKz ? 'Монотек ресми дүкені' : 'Официальный магазин Монотек'}
+              </span>
+            </div>
+
+            <h1 className="text-5xl md:text-6xl font-extrabold text-white leading-tight mb-5">
+              {isKz ? (
+                <>
+                  Үйіңізге <span className="text-amber-400">сапалы</span>
+                  <br />
+                  жиhаз
+                </>
+              ) : (
+                <>
+                  Мебель для <span className="text-amber-400">вашего</span>
+                  <br />
+                  идеального дома
+                </>
+              )}
+            </h1>
+
+            <p className="text-lg text-gray-300 mb-8 leading-relaxed">
+              {isKz
+                ? 'Kaspi арқылы 0-0-24 бөліп төлеу. Бүкіл Қазақстан бойынша жеткізу.'
+                : 'Рассрочка 0-0-24 через Kaspi. Доставка и сборка по всему Казахстану.'}
+            </p>
+
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href={`/${locale}/catalog`}
+                className="bg-amber-500 hover:bg-amber-400 text-white font-bold px-8 py-4 rounded-xl text-base transition-all duration-200 hover:shadow-lg hover:shadow-amber-500/30 hover:-translate-y-0.5"
+              >
+                {isKz ? 'Каталогты қарау' : 'Смотреть каталог'}
+              </Link>
+              <a
+                href="tel:+77074794753"
+                className="flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-4 rounded-xl text-base transition-all duration-200 border border-white/20"
+              >
+                <Phone size={18} />
+                {isKz ? 'Қоңырау шалу' : 'Позвонить'}
+              </a>
+            </div>
+
+            {/* Быстрые цифры */}
+            <div className="flex gap-8 mt-10 pt-8 border-t border-white/10">
+              {[
+                { num: '500+', label: isKz ? 'Тауар' : 'Товаров' },
+                { num: '1000+', label: isKz ? 'Клиент' : 'Клиентов' },
+                { num: '5 жыл', label: isKz ? 'Нарықта' : 'На рынке' },
+              ].map((stat) => (
+                <div key={stat.num}>
+                  <div className="text-2xl font-bold text-amber-400">{stat.num}</div>
+                  <div className="text-sm text-gray-400">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Advantages */}
-      <section className="bg-amber-50 py-10 border-b border-amber-100">
+      {/* Kaspi рассрочка баннер */}
+      <section className="bg-gradient-to-r from-[#ef3124] to-[#c0392b] text-white py-6">
+        <div className="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <div className="text-4xl font-black tracking-tight">
+              0 – 0 – 24
+            </div>
+            <div>
+              <div className="font-bold text-lg">
+                {isKz ? 'Kaspi бөліп төлеу' : 'Рассрочка Kaspi'}
+              </div>
+              <div className="text-red-200 text-sm">
+                {isKz
+                  ? 'Комиссиясыз, бастапқы жарнасыз'
+                  : 'Без переплат и первоначального взноса'}
+              </div>
+            </div>
+          </div>
+          <div className="flex items-center gap-6 text-sm">
+            <div className="text-center">
+              <div className="font-bold text-xl">
+                {isKz ? 'Тез бекіту' : 'Быстрое одобрение'}
+              </div>
+              <div className="text-red-200">
+                {isKz ? '2 минутта' : 'За 2 минуты'}
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="font-bold text-xl">
+                {isKz ? 'Онлайн' : 'Онлайн'}
+              </div>
+              <div className="text-red-200">
+                {isKz ? 'Тіркеусіз' : 'Без визита в банк'}
+              </div>
+            </div>
+            <Link
+              href={`/${locale}/catalog`}
+              className="bg-white text-red-600 font-bold px-5 py-2.5 rounded-lg hover:bg-red-50 transition-colors text-sm whitespace-nowrap"
+            >
+              {isKz ? 'Бөліп алу' : 'Купить в рассрочку'}
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Преимущества */}
+      <section className="bg-white border-b border-gray-100 py-8">
         <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6">
           {[
             {
-              icon: <CreditCard className="text-amber-500" size={28} />,
-              title: locale === 'kz' ? '0-0-24 бөліп төлеу' : 'Рассрочка 0-0-24',
-              desc: locale === 'kz' ? 'Kaspi арқылы комиссиясыз' : 'Через Kaspi без комиссии',
+              icon: <Truck className="text-amber-500" size={30} />,
+              title: isKz ? 'Қазақстан бойынша жеткізу' : 'Доставка по Казахстану',
+              desc: isKz ? 'Күн сайын 9:00 – 23:00' : 'Ежедневно 9:00 – 23:00',
             },
             {
-              icon: <Truck className="text-amber-500" size={28} />,
-              title: locale === 'kz' ? 'Қазақстан бойынша жеткізу' : 'Доставка по Казахстану',
-              desc: locale === 'kz' ? 'Күн сайын 9:00 – 23:00' : 'Ежедневно 9:00 – 23:00',
+              icon: <Wrench className="text-amber-500" size={30} />,
+              title: isKz ? 'Тегін жинау' : 'Бесплатная сборка',
+              desc: isKz ? 'Шеберлер жеткізумен' : 'Мастера при доставке',
             },
             {
-              icon: <Shield className="text-amber-500" size={28} />,
-              title: locale === 'kz' ? 'Сапа кепілдігі' : 'Гарантия качества',
-              desc: locale === 'kz' ? 'Тексерілген өндірушілер' : 'Проверенные производители',
+              icon: <Shield className="text-amber-500" size={30} />,
+              title: isKz ? 'Сапа кепілдігі' : 'Гарантия качества',
+              desc: isKz ? 'Тексерілген өндірушілер' : 'Проверенные производители',
             },
             {
-              icon: <Wrench className="text-amber-500" size={28} />,
-              title: locale === 'kz' ? 'Тегін жинау' : 'Бесплатная сборка',
-              desc: locale === 'kz' ? 'Жеткізу кезінде' : 'При доставке',
+              icon: <CreditCard className="text-amber-500" size={30} />,
+              title: isKz ? '0-0-24 бөліп төлеу' : 'Рассрочка 0-0-24',
+              desc: isKz ? 'Kaspi арқылы комиссиясыз' : 'Через Kaspi без комиссии',
             },
           ].map((item, i) => (
-            <div key={i} className="flex flex-col items-center text-center gap-2">
-              {item.icon}
-              <div className="font-semibold text-gray-800 text-sm">{item.title}</div>
-              <div className="text-xs text-gray-500">{item.desc}</div>
+            <div key={i} className="flex items-start gap-3 p-4">
+              <div className="flex-shrink-0 w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center">
+                {item.icon}
+              </div>
+              <div>
+                <div className="font-semibold text-gray-800 text-sm leading-tight">{item.title}</div>
+                <div className="text-xs text-gray-500 mt-0.5">{item.desc}</div>
+              </div>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Categories */}
-      <section className="max-w-7xl mx-auto px-4 py-12">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">
-          {locale === 'kz' ? 'Санаттар' : 'Категории'}
-        </h2>
+      {/* Категории */}
+      <section className="max-w-7xl mx-auto px-4 py-14">
+        <div className="flex items-center justify-between mb-7">
+          <h2 className="text-2xl font-bold text-gray-900">
+            {isKz ? 'Санаттар' : 'Категории'}
+          </h2>
+        </div>
         <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-3">
-          {CATEGORIES.map((cat) => (
+          {CATEGORIES.map((cat) => {
+            const gradient = CATEGORY_COLORS[cat.slug] || 'from-gray-100 to-gray-50'
+            return (
+              <Link
+                key={cat.id}
+                href={`/${locale}/catalog/${cat.slug}`}
+                className={`flex flex-col items-center gap-2 p-4 rounded-2xl bg-gradient-to-b ${gradient} hover:shadow-md border border-transparent hover:border-amber-200 transition-all duration-200 text-center group hover:-translate-y-0.5`}
+              >
+                <span className="text-3xl group-hover:scale-110 transition-transform duration-200">
+                  {cat.icon}
+                </span>
+                <span className="text-xs font-semibold text-gray-700 group-hover:text-amber-700 leading-tight">
+                  {isKz ? cat.nameKz : cat.nameRu}
+                </span>
+              </Link>
+            )
+          })}
+        </div>
+      </section>
+
+      {/* Популярные товары */}
+      <section className="bg-gray-50 py-14">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex items-center justify-between mb-7">
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900">
+                {isKz ? 'Танымал тауарлар' : 'Популярные товары'}
+              </h2>
+              <p className="text-sm text-gray-500 mt-1">
+                {isKz ? 'Ең көп сатып алынатын тауарлар' : 'Самые покупаемые позиции'}
+              </p>
+            </div>
             <Link
-              key={cat.id}
-              href={`/${locale}/catalog/${cat.slug}`}
-              className="flex flex-col items-center gap-2 p-4 rounded-xl bg-gray-50 hover:bg-amber-50 hover:border-amber-200 border border-transparent transition-all text-center group"
+              href={`/${locale}/catalog`}
+              className="text-amber-600 hover:text-amber-700 text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all"
             >
-              <span className="text-3xl">{cat.icon}</span>
-              <span className="text-xs font-medium text-gray-700 group-hover:text-amber-700 leading-tight">
-                {locale === 'kz' ? cat.nameKz : cat.nameRu}
-              </span>
+              {isKz ? 'Барлығын көру' : 'Смотреть все'} →
             </Link>
+          </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {products.map((product, i) => (
+              <ProductCard key={product.id} product={product} badge={i === 0 ? 'hit' : i === 1 ? 'new' : undefined} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Блок доверия */}
+      <section className="max-w-7xl mx-auto px-4 py-14">
+        <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
+          {isKz ? 'Клиенттер пікірлері' : 'Отзывы покупателей'}
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          {[
+            {
+              name: 'Айгерим С.',
+              text: isKz
+                ? 'Диванды тез жеткізді, жинауды да өздері жасады. Сапасы өте жақсы!'
+                : 'Диван доставили быстро, собрали сами. Качество отличное, рекомендую!',
+              rating: 5,
+              product: isKz ? 'TURAN HOME диван' : 'Диван TURAN HOME',
+            },
+            {
+              name: 'Дмитрий К.',
+              text: isKz
+                ? 'Kaspi арқылы бөліп төлеп алдым, өте ыңғайлы. Жиhаз сапалы.'
+                : 'Купил в рассрочку через Kaspi, очень удобно. Мебель качественная.',
+              rating: 5,
+              product: isKz ? 'Жатын бөлме жиынтығы' : 'Спальный гарнитур',
+            },
+            {
+              name: 'Мадина Т.',
+              text: isKz
+                ? 'Кеңес берді, дұрыс таңдауға көмектесті. Жеткізу уақытында болды.'
+                : 'Помогли с выбором, проконсультировали. Доставка вовремя, всё отлично.',
+              rating: 5,
+              product: isKz ? 'Ас үй жиhазы' : 'Кухонный гарнитур',
+            },
+          ].map((review, i) => (
+            <div key={i} className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
+              <div className="flex gap-0.5 mb-3">
+                {Array.from({ length: review.rating }).map((_, j) => (
+                  <Star key={j} size={16} className="text-amber-400 fill-amber-400" />
+                ))}
+              </div>
+              <p className="text-gray-700 text-sm leading-relaxed mb-4">"{review.text}"</p>
+              <div>
+                <div className="font-semibold text-gray-900 text-sm">{review.name}</div>
+                <div className="text-xs text-gray-400">{review.product}</div>
+              </div>
+            </div>
           ))}
         </div>
       </section>
 
-      {/* Popular products */}
-      <section className="max-w-7xl mx-auto px-4 pb-16">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-gray-900">
-            {locale === 'kz' ? 'Танымал тауарлар' : 'Популярные товары'}
+      {/* CTA баннер */}
+      <section className="bg-gradient-to-br from-gray-900 to-gray-800 text-white py-14">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-3">
+            {isKz ? 'Сұрақтарыңыз бар ма?' : 'Остались вопросы?'}
           </h2>
-          <Link
-            href={`/${locale}/catalog`}
-            className="text-amber-600 hover:text-amber-700 text-sm font-medium"
+          <p className="text-gray-400 mb-8">
+            {isKz
+              ? 'Біздің менеджерлер сізге қуанышпен көмектеседі'
+              : 'Наши менеджеры с радостью помогут вам с выбором'}
+          </p>
+          <a
+            href="tel:+77074794753"
+            className="inline-flex items-center gap-3 bg-amber-500 hover:bg-amber-400 text-white font-bold px-8 py-4 rounded-xl text-lg transition-all hover:shadow-lg hover:shadow-amber-500/30 hover:-translate-y-0.5"
           >
-            {locale === 'kz' ? 'Барлығын көру →' : 'Смотреть все →'}
-          </Link>
-        </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+            <Phone size={22} />
+            +7 (707) 479-47-53
+          </a>
+          <p className="text-gray-500 text-sm mt-4">
+            {isKz ? 'Күн сайын 9:00 – 23:00' : 'Ежедневно с 9:00 до 23:00'}
+          </p>
         </div>
       </section>
     </div>
