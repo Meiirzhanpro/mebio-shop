@@ -43,15 +43,16 @@ export default async function HomePage({
             <h1 className="text-5xl md:text-6xl font-extrabold text-white leading-tight mb-5">
               {isKz ? (
                 <>
-                  Үйіңізге <span className="text-amber-400">сапалы</span>
+                  Кеңістікті <span className="text-amber-400">өзгертетін</span>
                   <br />
                   жиhаз
                 </>
               ) : (
                 <>
-                  Мебель для <span className="text-amber-400">вашего</span>
+                  Мебель, которая{' '}
+                  <span className="text-amber-400">меняет</span>
                   <br />
-                  идеального дома
+                  пространство
                 </>
               )}
             </h1>
